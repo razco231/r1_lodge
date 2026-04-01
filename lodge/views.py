@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.core.mail import send_mail
 from .models import Room, Booking, RoomImage
 from datetime import datetime
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 def home(request):
@@ -104,3 +105,38 @@ def gallery(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+@staff_member_required
+def manager_dashboard(request):
+    bookings = Booking.objects.all().order_by('-check_in')
+
+    total_bookings = bookings.count()
+    pending_bookings = bookings.filter(status='pending').count()
+    confirmed_bookings = bookings.filter(status='confirmed').count()
+    cancelled_bookings = bookings.filter(status='cancelled').count()
+
+    context = {
+        'bookings': bookings,
+        'total_bookings': total_bookings,
+        'pending_bookings': pending_bookings,
+        'confirmed_bookings': confirmed_bookings,
+        'cancelled_bookings': cancelled_bookings,
+    }
+
+    return render(request, 'manager_dashboard.html', context)
+
+@staff_member_required
+def confirm_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    booking.status = 'confirmed'
+    booking.save()
+    return redirect('manager_dashboard')
+
+
+@staff_member_required
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    booking.status = 'cancelled'
+    booking.save()
+    return redirect('manager_dashboard')

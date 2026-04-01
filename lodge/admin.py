@@ -13,7 +13,11 @@ class RoomAdmin(admin.ModelAdmin):
     inlines = [RoomImageInline]
 
 # Booking admin (keep this)
-@admin.register(Booking)
+from .models import Booking
+
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['guest_name', 'room', 'check_in', 'check_out', 'total_price']
-    list_filter = ['room', 'check_in', 'check_out']
+    list_display = ('room', 'guest_name', 'check_in', 'check_out', 'total_price', 'status')
+    list_filter = ('status', 'room')
+    search_fields = ('guest_name', 'guest_email')
+
+admin.site.register(Booking, BookingAdmin)

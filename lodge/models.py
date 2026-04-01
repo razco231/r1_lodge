@@ -33,6 +33,12 @@ class Booking(models.Model):
         ('cancelled', 'Cancelled'),
         ('expired', 'Expired'),
     ]
+    
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('confirmed', 'Confirmed'),
+        ('cancelled', 'Cancelled'),
+    ]
 
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     guest_name = models.CharField(max_length=100)
@@ -44,6 +50,7 @@ class Booking(models.Model):
     payment_reference = models.CharField(max_length=200, blank=True, null=True)
     payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS_CHOICES, default='pending')
     booking_status = models.CharField(max_length=20, choices=BOOKING_STATUS_CHOICES, default='pending_payment')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
     created_at = models.DateTimeField(auto_now_add=True)
 

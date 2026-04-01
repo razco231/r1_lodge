@@ -11,13 +11,18 @@
 <header>
     <h1>R1 Lodge</h1>
     <nav>
-        <a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a>
-        {% comment %} <a href="#">Rooms</a> {% endcomment %}
+        <a href="/">Home</a>
+        <a href="{% url 'gallery' %}">Gallery</a>
         <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'gallery' %}" class="{% if 'gallery' in request.path %}active{% endif %}">Gallery</a>
         <a href="{% url 'contact' %}">Contact</a>
-        {% comment %} <a href="#">Book Now</a> {% endcomment %}
-    </nav>
+
+        {% if user.is_authenticated and user.is_staff %}
+            <a href="{% url 'manager_dashboard' %}">Dashboard</a>
+            <a href="{% url 'admin:logout' %}">Logout</a>
+        {% else %}
+            <a href="/admin/login/?next=/manager-dashboard/">Manager Login</a>
+        {% endif %}
+</nav>
 </header>
 
 {% block content %}{% endblock %}

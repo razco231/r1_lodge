@@ -9,4 +9,7 @@ urlpatterns = [
     path('success/', views.success, name='success'),
     path('gallery/', views.gallery, name='gallery'),
     path('about/', views.about, name='about'),
+    path('manager-dashboard/', views.manager_dashboard, name='manager_dashboard'),
+    path('manager-dashboard/confirm/<int:booking_id>/', views.confirm_booking, name='confirm_booking'),
+    path('manager-dashboard/cancel/<int:booking_id>/', views.cancel_booking, name='cancel_booking'),
 ]

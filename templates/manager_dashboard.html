@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+    <h2>Manager Dashboard</h2>
+
+    <div class="dashboard-cards">
+        <div class="dashboard-card">
+            <h3>Total Bookings</h3>
+            <p>{{ total_bookings }}</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Pending</h3>
+            <p>{{ pending_bookings }}</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Confirmed</h3>
+            <p>{{ confirmed_bookings }}</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Cancelled</h3>
+            <p>{{ cancelled_bookings }}</p>
+        </div>
+    </div>
+
+    <div class="dashboard-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Guest Name</th>
+                    <th>Email</th>
+                    <th>Room</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.guest_name }}</td>
+                    <td>{{ booking.guest_email }}</td>
+                    <td>{{ booking.room.name }}</td>
+                    <td>{{ booking.check_in }}</td>
+                    <td>{{ booking.check_out }}</td>
+                    <td>₦{{ booking.total_price }}</td>
+                    <td>{{ booking.status }}</td>
+                    <td>
+                        {% if booking.status == 'pending' %}
+                            <a href="{% url 'confirm_booking' booking.id %}" class="action-btn confirm-btn">Confirm</a>
+                            <a href="{% url 'cancel_booking' booking.id %}" class="action-btn cancel-btn">Cancel</a>
+                        {% elif booking.status == 'confirmed' %}
+                            <a href="{% url 'cancel_booking' booking.id %}" class="action-btn cancel-btn">Cancel</a>
+                        {% elif booking.status == 'cancelled' %}
+                            <a href="{% url 'confirm_booking' booking.id %}" class="action-btn confirm-btn">Confirm</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8">No bookings yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
