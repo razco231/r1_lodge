@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Experience Cozy Comfort at R1 Lodge</h2>
+        <p>Your peaceful stay in Ilorin starts here.</p>
+        <a href="#rooms"><button>Explore Rooms</button></a>
+    </div>
+</section>
+
+<h2 id="rooms" class="section-title">Our Rooms</h2>
+
+<section>
+    <h3>About Us</h3>
+    <p>R1 Lodge offers comfort and relaxation...</p>
+</section>
+
+<h2 style="text-align:center;">Our Rooms</h2>
+
+<div class="rooms-container">
+    {% for room in rooms %}
+        <div class="room-card">
+            {% if room.image %}
+                <img src = "{{room.image.url}}" alt = "{{ room.name }}">
+            {% endif %}
+            <h3>{{ room.name }}</h3>
+            <p>{{ room.description }}</p>
+            <p class="price">₦{{ room.price }}</p>
+
+            <a href="{% url 'room_detail' room.id %}">
+                <button>View Room</button>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

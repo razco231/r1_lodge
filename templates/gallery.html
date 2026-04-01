@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="gallery-page">
+    <h2 class="section-title">Gallery</h2>
+    <p class="gallery-subtext">Choose a room to view all its photos.</p>
+
+    <div class="gallery-grid">
+        {% for room in rooms %}
+            <div class="gallery-item">
+                <a href="{% url 'room_detail' room.id %}">
+                    {% if room.image %}
+                        <img src="{{ room.image.url }}" alt="{{ room.name }}">
+                    {% endif %}
+                    <div class="gallery-caption">
+                        <h3>{{ room.name }}</h3>
+                        <p>View all photos</p>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <p style="text-align:center;">No rooms available yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="booking-wrapper">
+    <div class="booking-form">
+        <h2>Book {{ room.name }}</h2>
+        <p>Price per day: ₦{{ room.price }}</p>
+
+        {% if error %}
+            <p style="color: red; font-weight: bold;">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST" id="booking-form">
+            {% csrf_token %}
+
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+
+            <input type="date" id="check_in" name="check_in" required>
+            <input type="date" id="check_out" name="check_out" required>
+
+            <p id="nights-info"></p>
+            <p id="price-info"></p>
+            <p id="date-error" style="color: red; font-weight: bold;"></p>
+
+            <button type="submit" id="booking-btn" disabled>Confirm Booking</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const pricePerDay = {{ room.price }};
+    const checkIn = document.getElementById('check_in');
+    const checkOut = document.getElementById('check_out');
+    const priceInfo = document.getElementById('price-info');
+    const nightsInfo = document.getElementById('nights-info');
+    const dateError = document.getElementById('date-error');
+    const bookingBtn = document.getElementById('booking-btn');
+
+    const today = new Date().toISOString().split('T')[0];
+    checkIn.min = today;
+    checkOut.min = today;
+
+    function calculatePrice() {
+        const checkInValue = checkIn.value;
+        const checkOutValue = checkOut.value;
+
+        dateError.innerText = "";
+        nightsInfo.innerText = "";
+        priceInfo.innerText = "";
+        bookingBtn.disabled = true;
+
+        if (checkInValue) {
+            const minCheckoutDate = new Date(checkInValue);
+            minCheckoutDate.setDate(minCheckoutDate.getDate() + 1);
+            checkOut.min = minCheckoutDate.toISOString().split('T')[0];
+        } else {
+            checkOut.min = today;
+        }
+
+        if (checkInValue && checkOutValue) {
+            const checkInDate = new Date(checkInValue);
+            const checkOutDate = new Date(checkOutValue);
+
+            const timeDiff = checkOutDate - checkInDate;
+            const days = timeDiff / (1000 * 60 * 60 * 24);
+
+            if (days > 0) {
+                const total = days * pricePerDay;
+                nightsInfo.innerText = "Nights: " + days;
+                priceInfo.innerText = "Total Price: ₦" + total.toLocaleString();
+                bookingBtn.disabled = false;
+            } else {
+                dateError.innerText = "Check-out must be after check-in.";
+            }
+        } else if (checkInValue || checkOutValue) {
+            priceInfo.innerText = "Select both dates to see total.";
+        }
+    }
+
+    checkIn.addEventListener('change', calculatePrice);
+    checkOut.addEventListener('change', calculatePrice);
+</script>
+
+{% endblock %}

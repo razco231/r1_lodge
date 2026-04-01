@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>R1 Lodge</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+
+<header>
+    <h1>R1 Lodge</h1>
+    <nav>
+        <a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+        {% comment %} <a href="#">Rooms</a> {% endcomment %}
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'gallery' %}" class="{% if 'gallery' in request.path %}active{% endif %}">Gallery</a>
+        <a href="{% url 'contact' %}">Contact</a>
+        {% comment %} <a href="#">Book Now</a> {% endcomment %}
+    </nav>
+</header>
+
+{% block content %}{% endblock %}
+
+<footer class="footer">
+    <p>© 2026 R1 Lodge. All rights reserved.</p>
+    <p> Ilorin, Kwara State</p>
+</footer>
+
+</body>
+</html>
