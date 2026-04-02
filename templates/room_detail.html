@@ -2,25 +2,29 @@
 
 {% block content %}
 
-<div class="room-detail">
-    <div class="room-detail-card">
-        {% if room.image %}
-            <img src="{{ room.image.url }}" alt="{{ room.name }}">
-        {% endif %}
+<section class="room-detail-section">
+    <div class="room-detail-wrapper">
+        <div class="room-main-image">
+            {% if room.image %}
+                <img src="{{ room.image.url }}" alt="{{ room.name }}">
+            {% else %}
+                <div class="no-image large-no-image">No Image Available</div>
+            {% endif %}
+        </div>
 
-        <div class="room-detail-text">
-            <h2>{{ room.name }}</h2>
-            <p>{{ room.description }}</p>
-            <p class="price">₦{{ room.price }}</p>
+        <div class="room-detail-info">
+            <h1>{{ room.name }}</h1>
+            <p class="room-detail-price">₦{{ room.price }} <span>per night</span></p>
+            <p class="room-detail-description">{{ room.description }}</p>
 
             <a href="{% url 'book_room' room.id %}">
-                <button>Book Now</button>
+                <button>Book This Room</button>
             </a>
         </div>
     </div>
-</div>
+</section>
 
-<div class="room-gallery-section">
+<section class="room-gallery-section">
     <h2 class="section-title">More Photos of {{ room.name }}</h2>
 
     <div class="room-gallery-grid">
@@ -35,6 +39,6 @@
             <p style="text-align:center;">No extra photos yet for this room.</p>
         {% endfor %}
     </div>
-</div>
+</section>
 
 {% endblock %}

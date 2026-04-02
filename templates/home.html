@@ -13,35 +13,41 @@
 </section>
 
 <section class="about-preview">
-    <h2 class="section-title">About R1 Lodge</h2>
-    <p>
-        Welcome to R1 Lodge, your cozy getaway in Ilorin. We provide comfortable
-        rooms, peaceful surroundings, and a smooth booking experience for every guest.
-    </p>
+    <div class="about-preview-box">
+        <h2>About R1 Lodge</h2>
+        <p>
+            Welcome to R1 Lodge, your cozy getaway in Ilorin. We provide comfortable
+            rooms, peaceful surroundings, and a smooth booking experience for every guest.
+        </p>
+    </div>
 </section>
 
-<h2 id="rooms" class="section-title">Our Rooms</h2>
+<section id="rooms" class="rooms-section">
+    <h2 class="section-title">Our Rooms</h2>
 
-<div class="rooms-container">
-    {% for room in rooms %}
-        <div class="room-card">
-            {% if room.image %}
-                <img src="{{ room.image.url }}" alt="{{ room.name }}">
-            {% else %}
-                <div class="no-image">No Image Available</div>
-            {% endif %}
+    <div class="rooms-container">
+        {% for room in rooms %}
+            <div class="room-card">
+                {% if room.image %}
+                    <img src="{{ room.image.url }}" alt="{{ room.name }}">
+                {% else %}
+                    <div class="no-image">No Image Available</div>
+                {% endif %}
 
-            <h3>{{ room.name }}</h3>
-            <p>{{ room.description|truncatewords:15 }}</p>
-            <p class="price">₦{{ room.price }}</p>
+                <div class="room-card-content">
+                    <h3>{{ room.name }}</h3>
+                    <p>{{ room.description|truncatewords:18 }}</p>
+                    <p class="price">₦{{ room.price }}</p>
 
-            <a href="{% url 'room_detail' room.id %}">
-                <button>View Room</button>
-            </a>
-        </div>
-    {% empty %}
-        <p style="text-align:center;">No rooms available yet.</p>
-    {% endfor %}
-</div>
+                    <a href="{% url 'room_detail' room.id %}">
+                        <button>View Room</button>
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <p style="text-align:center;">No rooms available yet.</p>
+        {% endfor %}
+    </div>
+</section>
 
 {% endblock %}
