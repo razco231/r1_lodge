@@ -17,14 +17,9 @@
     <p>R1 Lodge offers comfort and relaxation...</p>
 </section>
 
-<h2 style="text-align:center;">Our Rooms</h2>
-
 <div class="rooms-container">
     {% for room in rooms %}
         <div class="room-card">
-            {% if room.image %}
-                <img src = "{{room.image.url}}" alt = "{{ room.name }}">
-            {% endif %}
             <h3>{{ room.name }}</h3>
             <p>{{ room.description }}</p>
             <p class="price">₦{{ room.price }}</p>
@@ -35,6 +30,5 @@
         </div>
     {% endfor %}
 </div>
-
 
 {% endblock %}
