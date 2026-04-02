@@ -5,12 +5,19 @@
 <section class="room-detail-section">
     <div class="room-detail-wrapper">
         <div class="room-main-image">
-            {% if room.image %}
-                <img src="{{ room.image.url }}" alt="{{ room.name }}">
-            {% else %}
-                <div class="no-image large-no-image">No Image Available</div>
-            {% endif %}
-        </div>
+            {% load static %}
+
+                {% if room.name == "Serenity Suite" %}
+                    <img src="{% static 'images/serenity.jpg' %}" alt="{{ room.name }}">
+                {% elif room.name == "The Tranquil Retreat" %}
+                    <img src="{% static 'images/tranquil.jpg' %}" alt="{{ room.name }}">
+                {% elif room.name == "The Comfort Nook" %}
+                    <img src="{% static 'images/comfort.jpg' %}" alt="{{ room.name }}">
+                {% elif room.name == "The Cozy Corner" %}
+                    <img src="{% static 'images/cozy.jpg' %}" alt="{{ room.name }}">
+                {% else %}
+                    <div class="no-image">No Image Available</div>
+                {% endif %}
 
         <div class="room-detail-info">
             <h1>{{ room.name }}</h1>
