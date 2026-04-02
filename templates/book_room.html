@@ -5,10 +5,21 @@
 <div class="booking-wrapper">
     <div class="booking-form">
         <h2>Book {{ room.name }}</h2>
-        <p>Price per day: ₦{{ room.price }}</p>
+        <p style="margin-bottom: 10px;">Price per day: ₦{{ room.price }}</p>
+
+        {% if booked_ranges %}
+            <div class="booked-info">
+                <h4>Already Booked Dates</h4>
+                <ul>
+                    {% for booking in booked_ranges %}
+                        <li>{{ booking.check_in }} to {{ booking.check_out }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
 
         {% if error %}
-            <p style="color: red; font-weight: bold;">{{ error }}</p>
+            <p style="color:red; font-weight:bold;">{{ error }}</p>
         {% endif %}
 
         <form method="POST" id="booking-form">
@@ -22,9 +33,9 @@
 
             <p id="nights-info"></p>
             <p id="price-info"></p>
-            <p id="date-error" style="color: red; font-weight: bold;"></p>
+            <p id="date-error" style="color:red; font-weight:bold;"></p>
 
-            <button type="submit" id="booking-btn" disabled>Confirm Booking</button>
+            <button type="submit" id="booking-btn" disabled>Submit Booking</button>
         </form>
     </div>
 </div>

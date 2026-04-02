@@ -1,17 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R1 Lodge</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
 
-<header>
-    <h1>R1 Lodge</h1>
     <nav>
-        <a href="/">Home</a>
+        <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'gallery' %}">Gallery</a>
         <a href="{% url 'about' %}">About</a>
         <a href="{% url 'contact' %}">Contact</a>
@@ -22,15 +21,14 @@
         {% else %}
             <a href="/admin/login/?next=/manager-dashboard/">Manager Login</a>
         {% endif %}
-</nav>
-</header>
+    </nav>
 
-{% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 
-<footer class="footer">
-    <p>© 2026 R1 Lodge. All rights reserved.</p>
-    <p> Ilorin, Kwara State</p>
-</footer>
+    <footer class="footer">
+        <p>© 2026 R1 Lodge. All rights reserved.</p>
+        <p>Alanamu Road, Mandate 3 Estate, Ilorin, Kwara State</p>
+    </footer>
 
 </body>
 </html>
