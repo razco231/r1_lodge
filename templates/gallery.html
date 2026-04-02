@@ -11,7 +11,7 @@
             <div class="gallery-item">
                 <a href="{% url 'room_detail' room.id %}">
                     {% if room.image %}
-                        <img src="{{ room.image.url }}" alt="{{ room.name }}">
+                        <img src="{{ room.image.url }}" alt="{{ room.name }}" />
                     {% else %}
                         <div class="no-image">No Image Available</div>
                     {% endif %}

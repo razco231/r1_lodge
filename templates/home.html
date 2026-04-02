@@ -29,7 +29,7 @@
         {% for room in rooms %}
             <div class="room-card">
                 {% if room.image %}
-                    <img src="{{ room.image.url }}" alt="{{ room.name }}">
+                    <img src="{{ room.image.url }}" alt="{{ room.name }}"/>
                 {% else %}
                     <div class="no-image">No Image Available</div>
                 {% endif %}
