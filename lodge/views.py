@@ -6,8 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 
 def home(request):
-    rooms = Room.objects.all()
-    return render(request, 'home.html', {'rooms': rooms})
+    return render(request, 'home.html')
 
 
 def room_detail(request, id):
