@@ -258,6 +258,7 @@ footer {
     border-radius: 16px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.1);
     align-items: center;
+    justify-content: center;
 }
 
 .room-main-image {
@@ -266,8 +267,8 @@ footer {
 
 .room-main-image img {
     width: 100%;
-    max-width: 500px;
-    height: 320px;
+    max-width: 400px;
+    height: 280px;
     object-fit: cover;
     border-radius: 12px;
     display: block;
