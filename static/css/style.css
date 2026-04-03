@@ -28,17 +28,22 @@ header h1 {
 nav {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
+    align-items: center;
+    padding: 18px 20px;
+    background: #5c4033;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 16px;
 }
 
 nav a:hover {
     text-decoration: underline;
+    color: #f5deb3;
 }
 
 /* HERO SECTION */
