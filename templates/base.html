@@ -18,9 +18,9 @@
         {% if user.is_authenticated and user.is_staff %}
             <a href="{% url 'manager_dashboard' %}">Dashboard</a>
             <a href="{% url 'admin:logout' %}">Logout</a>
-        {% else %}
+        {% comment %} {% else %}
             <a href="/admin/login/?next=/manager-dashboard/">Manager Login</a>
-        {% endif %}
+        {% endif %} {% endcomment %}
     </nav>
 
     {% block content %}{% endblock %}
