@@ -8,8 +8,8 @@
 
 /* BODY */
 body {
-    background: #f5f5dc;
-    color: #333;
+    background: #f8f8f8;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 /* HEADER */
@@ -87,39 +87,50 @@ nav a:hover {
 /* ROOMS GRID */
 .rooms-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
     padding: 20px;
 }
 
-/* ROOM CARD */
 .room-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
 }
 
 .room-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 }
 
-/* ROOM IMAGE */
 .room-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
-/* ROOM CONTENT */
 .room-card-content {
     padding: 15px;
-    text-align: center;
 }
 
 .room-card h3 {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.price {
+    color: #5C4033;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.room-card button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #5C4033;
+    color: white;
 }
 
 .price {
@@ -135,10 +146,12 @@ button {
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
     background: #3e2a20;
+    opacity: 0.9;
 }
 
 /* NO IMAGE */
@@ -313,26 +326,37 @@ footer {
 
 /* HERO */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), #8aa17d;
-    height: 80vh;
+    height: 85vh;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url('/static/images/lodge-bg.jpg'); /* optional image */
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     text-align: center;
+    color: white;
 }
 
 .hero-content h1 {
-    font-size: 50px;
-    margin-bottom: 10px;
+    font-size: 55px;
+    font-weight: 700;
 }
 
-.hero-buttons {
-    margin-top: 20px;
+.hero-content p {
+    font-size: 20px;
+    margin-top: 10px;
+    opacity: 0.9;
 }
 
 .hero-buttons button {
-    margin: 5px;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #D4A373;
+    color: white;
+    font-weight: bold;
 }
 
 .secondary-btn {
@@ -376,4 +400,29 @@ footer {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+}
+
+.navbar {
+    background: #5C4033;
+    padding: 15px 40px;
+}
+
+.logo {
+    position: absolute;
+    left: 40px;
+}
+
+.nav-links {
+    justify-content: center;
+    width: 100%;
+}
+
+.nav-links a {
+    font-size: 15px;
+}
+
+.section-title {
+    text-align: center;
+    margin: 60px 0 20px;
+    font-size: 28px;
 }
