@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R1 Lodge</title>
+    <title>Ajikobi Lodge</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-    <nav>
+<header class="navbar">
+    <div class="logo">
+        <a href="{% url 'home' %}">Ajikobi Lodge</a>
+    </div>
+
+    <nav class="nav-links">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'gallery' %}">Gallery</a>
         <a href="{% url 'about' %}">About</a>
@@ -18,17 +23,46 @@
         {% if user.is_authenticated and user.is_staff %}
             <a href="{% url 'manager_dashboard' %}">Dashboard</a>
             <a href="{% url 'admin:logout' %}">Logout</a>
-        
+        {% else %}
             <a href="/admin/login/?next=/manager-dashboard/">Manager Login</a>
-        {% endif %} 
+        {% endif %}
     </nav>
+</header>
 
-    {% block content %}{% endblock %}
+{% block content %}{% endblock %}
 
-    <footer class="footer">
-        <p>© 2026 R1 Lodge. All rights reserved.</p>
-        <p>Alanamu Road, Mandate 3 Estate, Ilorin, Kwara State</p>
-    </footer>
+<a class="whatsapp-float"
+   href="https://wa.me/2348123456789?text=Hello%20I%20want%20to%20make%20an%20enquiry%20about%20Ajikobi%20Lodge"
+   target="_blank">
+    WhatsApp
+</a>
+
+<footer class="footer">
+    <div class="footer-grid">
+        <div>
+            <h3>Ajikobi Lodge</h3>
+            <p>Comfort, peace, and relaxation in Ilorin.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <p><a href="{% url 'home' %}">Home</a></p>
+            <p><a href="{% url 'gallery' %}">Gallery</a></p>
+            <p><a href="{% url 'contact' %}">Contact</a></p>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>📍 Ilorin, Kwara State</p>
+            <p>📞 08123456789</p>
+            <p>📧 manager@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Ajikobi Lodge. All rights reserved.</p>
+    </div>
+</footer>
 
 </body>
 </html>
