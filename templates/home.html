@@ -19,7 +19,7 @@
 </section>
 
 <!-- WHY CHOOSE US -->
-<section class="features">
+<section class="features  fade-in">
     <h2 class="section-title">Why Choose Us</h2>
 
     <div class="features-grid">
@@ -51,7 +51,7 @@
 
     <div class="rooms-container">
         {% for room in rooms %}
-            <div class="room-card">
+            <div class="room-card fade-in">
 
                 {% if room.image %}
                     <img src="{{ room.image.url }}" alt="{{ room.name }}">
@@ -77,7 +77,7 @@
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials">
+<section class="testimonials fade-in">
     <h2 class="section-title">What Our Guests Say</h2>
 
     <div class="testimonial-grid">
