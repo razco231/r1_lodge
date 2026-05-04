@@ -311,3 +311,69 @@ footer {
 }
 
 
+/* HERO */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), #8aa17d;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.hero-buttons {
+    margin-top: 20px;
+}
+
+.hero-buttons button {
+    margin: 5px;
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 2px solid white;
+}
+
+/* FEATURES */
+.features {
+    padding: 50px 20px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.feature-box {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* TESTIMONIALS */
+.testimonials {
+    padding: 50px 20px;
+    background: #f5f5dc;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.testimonial {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}

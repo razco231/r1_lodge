@@ -1,52 +1,100 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
+<!-- HERO -->
 <section class="hero">
     <div class="hero-overlay">
         <div class="hero-content">
-            <h1>Experience Cozy Comfort at R1 Lodge</h1>
-            <p>Your peaceful stay in Ilorin starts here.</p>
-            <a href="#rooms"><button>Explore Rooms</button></a>
+            <h1>Welcome to Ajikobi Lodge</h1>
+            <p>Comfort, peace, and luxury in the heart of Ilorin</p>
+
+            <div class="hero-buttons">
+                <a href="#rooms"><button>Book a Room</button></a>
+                <a href="{% url 'gallery' %}"><button class="secondary-btn">View Gallery</button></a>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="about-preview">
-    <div class="about-preview-box">
-        <h2>About Ajikobi Lodge</h2>
-        <p>
-            Welcome to Ajikobi Lodge, your cozy getaway in Ilorin. We provide comfortable
-            rooms, peaceful surroundings, and a smooth booking experience for every guest.
-        </p>
+<!-- WHY CHOOSE US -->
+<section class="features">
+    <h2 class="section-title">Why Choose Us</h2>
+
+    <div class="features-grid">
+        <div class="feature-box">
+            <h3>Peaceful Environment</h3>
+            <p>Enjoy calm and relaxation away from city noise.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Comfortable Rooms</h3>
+            <p>Clean, spacious, and well-furnished rooms.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Easy Booking</h3>
+            <p>Quick and simple online booking experience.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>24/7 Support</h3>
+            <p>Our manager is always available for assistance.</p>
+        </div>
     </div>
 </section>
 
-<section id="rooms" class="rooms-section">
+<!-- ROOMS -->
+<section id="rooms">
     <h2 class="section-title">Our Rooms</h2>
 
     <div class="rooms-container">
         {% for room in rooms %}
             <div class="room-card">
+
                 {% if room.image %}
-                    <img src="{{ room.image.url }}" alt="{{ room.name }}"/>
+                    <img src="{{ room.image.url }}" alt="{{ room.name }}">
                 {% else %}
-                    <div class="no-image">No Image Available</div>
+                    <div class="no-image">No Image</div>
                 {% endif %}
 
                 <div class="room-card-content">
                     <h3>{{ room.name }}</h3>
-                    <p>{{ room.description|truncatewords:18 }}</p>
-                    <p class="price">₦{{ room.price }}</p>
+                    <p>{{ room.description|truncatewords:15 }}</p>
+                    <p class="price">₦{{ room.price }} / night</p>
 
                     <a href="{% url 'room_detail' room.id %}">
                         <button>View Room</button>
                     </a>
                 </div>
+
             </div>
         {% empty %}
             <p style="text-align:center;">No rooms available yet.</p>
         {% endfor %}
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <h2 class="section-title">What Our Guests Say</h2>
+
+    <div class="testimonial-grid">
+        <div class="testimonial">
+            <p>"Amazing place, very peaceful and clean!"</p>
+            <h4>- John</h4>
+        </div>
+
+        <div class="testimonial">
+            <p>"Booking was easy and the staff were helpful."</p>
+            <h4>- Aisha</h4>
+        </div>
+
+        <div class="testimonial">
+            <p>"I will definitely come back again."</p>
+            <h4>- David</h4>
+        </div>
     </div>
 </section>
 
